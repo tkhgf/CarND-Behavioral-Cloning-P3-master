@@ -93,8 +93,7 @@ The model used an adam optimizer, so the learning rate was not tuned manually (m
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road ... 
-I have also used training data to recover from obstacles, like recover from hitting a tree or bridge etc.,
+Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road, I have also used training data to recover from obstacles, like recover from hitting a tree or bridge etc.,
 For details about how I created the training data, see the next section. 
 
 ### Model Architecture and Training Strategy
@@ -141,32 +140,35 @@ Model derived from nvidia model.
 
 Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
-![alt text][image1]
 
 #### 3. Creation of the Training Set & Training Process
 
 To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
 
-![alt text][image2]
-
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
-
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
-
-Then I repeated this process on track two in order to get more data points.
+https://github.com/tkhgf/CarND-Behavioral-Cloning-P3-master/blob/master/examples/sample_1st_conv.jpg
 
 To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+https://github.com/tkhgf/CarND-Behavioral-Cloning-P3-master/blob/master/examples/flipped_sample_1st_conv.jpg
 
-![alt text][image6]
-![alt text][image7]
-
-Etc ....
-
-After the collection process, I had X number of data points. I then preprocessed this data by ...
-
-
+After the collection process, I had X number of data points. I then preprocessed this data by cropping
+https://github.com/tkhgf/CarND-Behavioral-Cloning-P3-master/blob/master/examples/sample_cropped.jpg
+Image dimension at this stage: 3 x 90 x 320
 I finally randomly shuffled the data set and put Y% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+After 1st convolution of 24 5x5 filters
+https://github.com/tkhgf/CarND-Behavioral-Cloning-P3-master/blob/master/examples/sample_1st_conv.jpg
+logits dimenision become 24 x 45 x 160 
+
+After 2nd convolution of 36 5x5 filters
+https://github.com/tkhgf/CarND-Behavioral-Cloning-P3-master/blob/master/examples/sample_2nd_conv.jpg
+logits dimenision become 24 x 36 x 22 x 80
+
+After 3rd convolution of 48 3 x 3 filters
+https://github.com/tkhgf/CarND-Behavioral-Cloning-P3-master/blob/master/examples/sample_3rd_conv.jpg
+logits dimenision become 24 x 36 x 48 x 12 x 41 
+
+After 4th convolution of 64 3 x 3 filters
+https://github.com/tkhgf/CarND-Behavioral-Cloning-P3-master/blob/master/examples/sample_4th_conv.jpg
+logits dimenision become 24 x 36 x 48 x 64 x 7 x 21
+
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 20 as evidenced by my training results. I used an adam optimizer so that manually training the learning rate wasn't necessary.
